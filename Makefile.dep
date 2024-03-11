@@ -1,0 +1,33 @@
+boot.o: boot.S multiboot.h x86_desc.h types.h
+handler.o: handler.S
+load_enable_paging.o: load_enable_paging.S
+sys_call.o: sys_call.S
+x86_desc.o: x86_desc.S x86_desc.h types.h
+filesys.o: filesys.c filesys.h types.h lib.h terminal.h system_call.h \
+  signal.h idt.h x86_desc.h
+i8259.o: i8259.c i8259.h types.h lib.h terminal.h
+idt.o: idt.c idt.h x86_desc.h types.h lib.h terminal.h handler.h \
+  keyboard.h system_call.h signal.h filesys.h rtc.h scheduler.h
+kernel.o: kernel.c multiboot.h types.h x86_desc.h lib.h terminal.h \
+  i8259.h debug.h tests.h idt.h handler.h keyboard.h system_call.h \
+  signal.h filesys.h rtc.h scheduler.h paging.h pit.h
+keyboard.o: keyboard.c keyboard.h types.h lib.h terminal.h i8259.h \
+  system_call.h signal.h idt.h x86_desc.h filesys.h scheduler.h
+lib.o: lib.c lib.h types.h terminal.h scheduler.h system_call.h signal.h \
+  idt.h x86_desc.h filesys.h
+paging.o: paging.c paging.h types.h system_call.h lib.h terminal.h \
+  signal.h idt.h x86_desc.h filesys.h
+pit.o: pit.c pit.h lib.h types.h terminal.h i8259.h scheduler.h
+rtc.o: rtc.c rtc.h lib.h types.h terminal.h x86_desc.h i8259.h \
+  scheduler.h system_call.h signal.h idt.h filesys.h
+scheduler.o: scheduler.c scheduler.h lib.h types.h terminal.h \
+  system_call.h signal.h idt.h x86_desc.h filesys.h paging.h
+signal.o: signal.c signal.h types.h idt.h x86_desc.h lib.h terminal.h \
+  system_call.h filesys.h scheduler.h
+system_call.o: system_call.c x86_desc.h types.h system_call.h lib.h \
+  terminal.h signal.h idt.h filesys.h paging.h rtc.h keyboard.h \
+  scheduler.h
+terminal.o: terminal.c keyboard.h types.h lib.h terminal.h i8259.h \
+  system_call.h signal.h idt.h x86_desc.h filesys.h paging.h scheduler.h
+tests.o: tests.c tests.h x86_desc.h types.h lib.h terminal.h rtc.h \
+  filesys.h
